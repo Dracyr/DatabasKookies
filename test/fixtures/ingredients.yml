@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  quantity: MyString
+  last_delivered: MyString
+  last_delivered_quantity: MyString
+
+two:
+  name: MyString
+  quantity: MyString
+  last_delivered: MyString
+  last_delivered_quantity: MyString

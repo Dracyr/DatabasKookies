@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Production Blocks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Start at</th>
+      <th>End at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @production_blocks.each do |production_block| %>
+      <tr>
+        <td><%= production_block.product %></td>
+        <td><%= production_block.start_at %></td>
+        <td><%= production_block.end_at %></td>
+        <td><%= link_to 'Show', production_block %></td>
+        <td><%= link_to 'Edit', edit_production_block_path(production_block) %></td>
+        <td><%= link_to 'Destroy', production_block, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Production block', new_production_block_path %>

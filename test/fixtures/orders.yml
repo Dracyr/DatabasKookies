@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 
+  delivered_at: 2016-03-31 07:00:51
+
+two:
+  customer_id: 
+  delivered_at: 2016-03-31 07:00:51

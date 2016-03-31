@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @production_block.product %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @production_block.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @production_block.end_at %>
+</p>
+
+<%= link_to 'Edit', edit_production_block_path(@production_block) %> |
+<%= link_to 'Back', production_blocks_path %>
