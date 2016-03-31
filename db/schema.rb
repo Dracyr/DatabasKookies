@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331051229) do
+ActiveRecord::Schema.define(version: 20160331055618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(version: 20160331051229) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
-    t.string   "quantity"
+    t.string   "quantity",                default: "0", null: false
     t.string   "last_delivered"
-    t.string   "last_delivered_quantity"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "last_delivered_quantity", default: "0", null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "orders", force: :cascade do |t|
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20160331051229) do
   add_index "product_ingredients", ["ingredient_id"], name: "index_product_ingredients_on_ingredient_id", using: :btree
   add_index "product_ingredients", ["product_id"], name: "index_product_ingredients_on_product_id", using: :btree
 
+  create_table "production_blocks", force: :cascade do |t|
+    t.integer  "product_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "production_blocks", ["product_id"], name: "index_production_blocks_on_product_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -72,4 +82,5 @@ ActiveRecord::Schema.define(version: 20160331051229) do
   add_foreign_key "pallets", "products"
   add_foreign_key "product_ingredients", "ingredients"
   add_foreign_key "product_ingredients", "products"
+  add_foreign_key "production_blocks", "products"
 end
