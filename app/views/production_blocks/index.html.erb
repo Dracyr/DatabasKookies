@@ -13,7 +13,7 @@
   <tbody>
     <% @production_blocks.each do |production_block| %>
       <tr>
-        <td><%= production_block.product %></td>
+        <td><%= link_to production_block.product, production_block %></td>
         <td><%= production_block.start_at %></td>
         <td><%= production_block.end_at %></td>
         <td><%= link_to 'Show', production_block %></td>
