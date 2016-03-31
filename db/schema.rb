@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20160331055618) do
 
   create_table "production_blocks", force: :cascade do |t|
     t.integer  "product_id"
-    t.datetime "start_at"
-    t.datetime "end_at"
+    t.datetime "start_at",   null: false
+    t.datetime "end_at",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

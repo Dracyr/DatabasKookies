@@ -2,8 +2,8 @@ class CreateProductionBlocks < ActiveRecord::Migration
   def change
     create_table :production_blocks do |t|
       t.belongs_to :product, index: true
-      t.datetime :start_at
-      t.datetime :end_at
+      t.datetime :start_at, null: false
+      t.datetime :end_at, null: false
 
       t.timestamps null: false
     end
