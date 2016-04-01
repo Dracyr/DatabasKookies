@@ -4,6 +4,7 @@ class Ingredient < ActiveRecord::Base
 
   validates :name, presence: true
   validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :last_delivered_quantity, numericality: { greater_than_or_equal_to: 0 }
 
   def deliver_ingredient(ingredient_params)
     update({

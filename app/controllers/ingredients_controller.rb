@@ -15,7 +15,7 @@ class IngredientsController < ApplicationController
         format.html { redirect_to ingredients_path, notice: 'Ingredient was successfully updated.' }
         format.json { render :show, status: :ok, location: @ingredient }
       else
-        format.html { render ingredients_path, error: 'Ingredient could not be updated' }
+        format.html { redirect_to ingredients_path, error: 'The ingredient could not be updated.' }
         format.json { render json: @ingredient.errors, status: :unprocessable_entity }
       end
     end

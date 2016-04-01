@@ -11,7 +11,7 @@
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= link_to customer.name, customer %></td>
+        <td><%= customer.name %></td>
         <td><%= customer.address %></td>
       </tr>
     <% end %>
