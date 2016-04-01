@@ -3,6 +3,8 @@ class Product < ActiveRecord::Base
   has_many :ingredients, through: :product_ingredients
   has_many :pallets
   has_many :production_blocks
+  has_many :order_products
+  has_many :orders, through: :order_products
 
   accepts_nested_attributes_for :product_ingredients, allow_destroy: true
 

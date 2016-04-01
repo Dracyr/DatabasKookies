@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407135648) do
+ActiveRecord::Schema.define(version: 20160407135652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 20160407135648) do
   create_table "customers", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "deliveries", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,6 +37,16 @@ ActiveRecord::Schema.define(version: 20160407135648) do
     t.datetime "updated_at",                            null: false
   end
 
+  create_table "order_deliveries", force: :cascade do |t|
+    t.integer  "delivery_id"
+    t.integer  "order_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "order_deliveries", ["delivery_id"], name: "index_order_deliveries_on_delivery_id", using: :btree
+  add_index "order_deliveries", ["order_id"], name: "index_order_deliveries_on_order_id", using: :btree
+
   create_table "order_products", force: :cascade do |t|
     t.integer "order_id"
     t.integer "product_id"
@@ -44,8 +59,9 @@ ActiveRecord::Schema.define(version: 20160407135648) do
   create_table "orders", force: :cascade do |t|
     t.integer  "customer_id"
     t.datetime "delivered_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "order_delivery_id"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
@@ -55,7 +71,7 @@ ActiveRecord::Schema.define(version: 20160407135648) do
     t.integer  "product_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.integer  "order_products_id"
+    t.integer  "order_delivery_id"
   end
 
   add_index "pallets", ["product_id"], name: "index_pallets_on_product_id", using: :btree
@@ -86,9 +102,13 @@ ActiveRecord::Schema.define(version: 20160407135648) do
     t.integer  "produced_count", default: 0, null: false
   end
 
+  add_foreign_key "order_deliveries", "deliveries"
+  add_foreign_key "order_deliveries", "orders"
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
   add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "order_deliveries"
+  add_foreign_key "pallets", "order_deliveries"
   add_foreign_key "pallets", "products"
   add_foreign_key "product_ingredients", "ingredients"
   add_foreign_key "product_ingredients", "products"

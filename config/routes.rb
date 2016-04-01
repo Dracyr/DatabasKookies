@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :ingredients, only: [:index, :update]
 
+  resources :deliveries
+
   root 'orders#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

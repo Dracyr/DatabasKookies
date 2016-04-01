@@ -21,6 +21,8 @@ gem 'select2-rails'
 gem 'momentjs-rails'
 gem 'bootstrap-daterangepicker-rails'
 
+gem "rails-erd" # Generate ER-Diagrams
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -1,0 +1,23 @@
+<h1>Deliveries <small><%= @deliveries.count %>st</small></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Delivery number</th>
+      <th>Created at</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @deliveries.each do |delivery| %>
+      <tr>
+        <td><%= delivery.id %></td>
+        <td><%= delivery.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Create delivery', new_delivery_path, class: 'btn btn-success' %>
