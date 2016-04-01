@@ -33,5 +33,7 @@
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_production_block_path(@production_block) %> |
-<%= link_to 'Back', production_blocks_path %>
+<%= link_to edit_production_block_path(@production_block), class: "btn btn-default" do %>
+  <%= i(:pencil)%>
+<% end %>
+<%= link_to 'Back', production_blocks_path, class: "btn btn-default" %>

@@ -1,4 +1,4 @@
-<h1>Listing Pallets <small><%= @pallets.count %>st</small></h1>
+<h1>Pallets <small><%= @pallets.count %>st</small></h1>
 
 <%= bootstrap_form_tag(url: pallets_path, method: :get, layout: :inline) do |f| %>
   <%= f.label :search %><br>
@@ -18,7 +18,7 @@
       <th>Product</th>
       <th>Produced</th>
       <th>Order</th>
-      <th>Blocked</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -30,7 +30,7 @@
         <td><%= pallet.product %></td>
         <td><%= pallet.created_at %></td>
         <td><%= pallet.order %></td>
-        <td><%= pallet.blocked? %></td>
+        <td align="right"><%= 'Blocked' if pallet.blocked? %></td>
       </tr>
     <% end %>
   </tbody>
