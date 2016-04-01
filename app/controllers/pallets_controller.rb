@@ -5,7 +5,7 @@ class PalletsController < ApplicationController
   # GET /pallets
   # GET /pallets.json
   def index
-    @pallets = Pallet.filter(params.slice(:blocked, :product_id, :created_at))
+    @pallets = Pallet.filter(params.slice(:blocked, :product_id, :created_at)).order(created_at: :desc)
   end
 
   # GET /pallets/new
@@ -40,7 +40,7 @@ class PalletsController < ApplicationController
   end
 
   def transform_params
-    params[:created_at] = params[:created_at].split('<>').map(&:to_date) if params[:created_at]
+    params[:created_at] = params[:created_at].split('~').map(&:to_date) if params[:created_at]
     params[:blocked] = params[:blocked] == "1" ? true : nil if params[:blocked]
     params[:product_id] = nil if params[:product_id] && params[:product_id].all?(&:blank?)
   end

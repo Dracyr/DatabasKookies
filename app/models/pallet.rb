@@ -5,6 +5,8 @@ class Pallet < ActiveRecord::Base
   belongs_to :order_product
   has_one :order, through: :order_product
 
+  validates_associated :product, message: 'Not enough ingredients to produce product.'
+
   delegate :to_s, to: :id
 
   scope :product_id, -> (product_id) { where(product_id: product_id) }
@@ -31,6 +33,9 @@ class Pallet < ActiveRecord::Base
   end
 
   def produce
-    product.produce && save
+    Pallet.transaction do
+      product.produce!
+      save
+    end
   end
 end

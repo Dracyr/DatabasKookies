@@ -20,7 +20,7 @@
         <td><%= ingredient.last_delivered_quantity.to_i / 1000.0 %>kg</td>
         <td>
           <%= bootstrap_form_for(ingredient, layout: :inline) do |f| %>
-            <%= f.text_field :last_delivered_quantity, hide_label: true, placeholder: 'Quantity (kg)' %>
+            <%= f.text_field :last_delivered_quantity, hide_label: true, placeholder: 'Quantity (kg)', value: nil %>
             <%= f.submit "Leverera" %>
           <% end %>
         </td>

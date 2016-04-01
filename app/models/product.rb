@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
 
   delegate :to_s, to: :name
 
-  def produce(product_quantity = 1)
+  def produce!(product_quantity = 1)
     quantity = product_quantity * 5400 # 15 cookies/bag, 10 bags/box, 36 boxes/pallet
     Product.transaction do
       product_ingredients.each do |pi|
