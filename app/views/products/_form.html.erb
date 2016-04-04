@@ -1,5 +1,5 @@
 <%= javascript_include_tag :defaults, "nested_form" %>
-<%= nested_form_for(@product) do |f| %>
+<%= bootstrap_nested_form_for(@product, layout: :inline) do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -12,27 +12,26 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
+  <%= f.form_group do %>
     <%= f.text_field :name %>
-  </div>
+  <% end %>
 
-  Ingredients:
-  <ul>
+  <h4>Ingredients:</h4>
     <%= f.fields_for :product_ingredients do |product_ingredients_form| %>
-      <li>
-        <%= product_ingredients_form.label :ingredient %>
-        <%= product_ingredients_form.collection_select :ingredient_id, Ingredient.all.order(:name), :id, :name %>
-        <%= product_ingredients_form.text_field :quantity %>
+      <%= f.form_group do %>
+        <%= product_ingredients_form.collection_select :ingredient_id, Ingredient.all.order(:name), :id, :name, hide_label: true %>
+        <%= product_ingredients_form.text_field :quantity, hide_label: true %>
         <%= product_ingredients_form.hidden_field :id %>
-        <%= product_ingredients_form.link_to_remove "Remove this ingredient" %>
-      </li>
+        <%= product_ingredients_form.link_to_remove "X", class: "btn btn-danger" %>
+      <% end %>
     <% end %>
-    <p>
-      <%= f.link_to_add "Add an ingredient", :product_ingredients %>
-    </p>
-  </ul>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <%= f.form_group  do %>
+    <%= f.link_to_add "Add an ingredient", :product_ingredients,
+    class: "btn btn-success", layout: :default %>
+  <% end %>
+
+  <%= f.form_group do %>
+    <%= f.primary %>
+  <% end %>
 <% end %>
