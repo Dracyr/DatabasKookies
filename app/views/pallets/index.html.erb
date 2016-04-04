@@ -1,24 +1,24 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Pallets</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Status</th>
       <th>Product</th>
       <th>Order</th>
-      <th colspan="3"></th>
+      <th>Blocked</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @pallets.each do |pallet| %>
-      <tr>
+      <tr class="<%= pallet.blocked? ? 'danger' : '' %>">
         <td><%= pallet.status %></td>
         <td><%= pallet.product %></td>
         <td><%= pallet.order %></td>
-        <td><%= link_to 'Show', pallet %></td>
+        <td><%= pallet.blocked? %></td>
+        <!-- <td><%#= link_to 'Show', pallet %></td> -->
         <td><%= link_to 'Edit', edit_pallet_path(pallet) %></td>
         <td><%= link_to 'Destroy', pallet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

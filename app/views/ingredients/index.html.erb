@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Ingredients</h1>
 
 <table class="table">
@@ -9,7 +7,7 @@
       <th>Quantity</th>
       <th>Last delivered</th>
       <th>Last delivered quantity</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -20,14 +18,15 @@
         <td><%= ingredient.quantity %></td>
         <td><%= ingredient.last_delivered %></td>
         <td><%= ingredient.last_delivered_quantity %></td>
-        <td><%= link_to 'Show', ingredient %></td>
-        <td><%= link_to 'Edit', edit_ingredient_path(ingredient) %></td>
-        <td><%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= bootstrap_form_for(ingredient, layout: :inline) do |f| %>
+            <%= f.text_field :last_delivered_quantity, hide_label: true %>
+            <%= f.submit "Leverera" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Ingredient', new_ingredient_path %>

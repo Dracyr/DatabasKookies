@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20160331055618) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
-    t.string   "quantity",                default: "0", null: false
-    t.string   "last_delivered"
+    t.integer  "quantity",                default: 0,   null: false
+    t.datetime "last_delivered"
     t.string   "last_delivered_quantity", default: "0", null: false
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20160331055618) do
   create_table "product_ingredients", force: :cascade do |t|
     t.integer "product_id"
     t.integer "ingredient_id"
-    t.string  "quantity"
+    t.integer "quantity"
   end
 
   add_index "product_ingredients", ["ingredient_id"], name: "index_product_ingredients_on_ingredient_id", using: :btree
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20160331055618) do
 
   create_table "production_blocks", force: :cascade do |t|
     t.integer  "product_id"
-    t.datetime "start_at"
-    t.datetime "end_at"
+    t.datetime "start_at",   null: false
+    t.datetime "end_at",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

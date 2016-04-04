@@ -34,42 +34,42 @@ end
 
 products = [
   {name: "Nut ring", ingredients: [
-    {name: "Flour", quantity: "450 g"},
-    {name: "Butter", quantity: "450 g"},
-    {name: "Icing sugar", quantity: "190 g"},
-    {name: "Roasted, chopped nuts", quantity: "225 g"}
+    {name: "Flour", quantity: 450},
+    {name: "Butter", quantity: 450},
+    {name: "Icing sugar", quantity: 190},
+    {name: "Roasted, chopped nuts", quantity: 225}
   ]}, {name: "Nut cookie", ingredients: [
-    {name: "Fine-ground nuts", quantity: "750 g"},
-    {name: "Ground, roasted nuts", quantity: "625 g"},
-    {name: "Bread crumbs", quantity: "125 g"},
-    {name: "Sugar", quantity: "375 g"},
-    {name: "Egg whites", quantity: "3,5 dl"},
-    {name: "Chocolate", quantity: "50 g"}
+    {name: "Fine-ground nuts", quantity: 750},
+    {name: "Ground, roasted nuts", quantity: 625},
+    {name: "Bread crumbs", quantity: 125},
+    {name: "Sugar", quantity: 375},
+    {name: "Egg whites", quantity: 350},
+    {name: "Chocolate", quantity: 50}
   ]}, {name: "Amneris", ingredients: [
-    {name: "Marzipan", quantity: "750 g"},
-    {name: "Butter", quantity: "250 g"},
-    {name: "Eggs", quantity: "250 g"},
-    {name: "Potato starch", quantity: "25 g"},
-    {name: "Wheat flour", quantity: "25 g"}
+    {name: "Marzipan", quantity: 750},
+    {name: "Butter", quantity: 250},
+    {name: "Eggs", quantity: 250},
+    {name: "Potato starch", quantity: 25},
+    {name: "Wheat flour", quantity: 25}
   ]}, {name: "Tango", ingredients: [
-    {name: "Butter", quantity: "200 g"},
-    {name: "Sugar", quantity: "250 g"},
-    {name: "Flour", quantity: "300 g"},
-    {name: "Sodium bicarbonate", quantity: "4 g"},
-    {name: "Vanilla", quantity: "2 g"}
+    {name: "Butter", quantity: 200},
+    {name: "Sugar", quantity: 250},
+    {name: "Flour", quantity: 300},
+    {name: "Sodium bicarbonate", quantity: 4},
+    {name: "Vanilla", quantity: 2}
   ]}, {name: "Almond delight", ingredients: [
-    {name: "Butter", quantity: "400 g"},
-    {name: "Sugar", quantity: "270 g"},
-    {name: "Chopped almonds", quantity: "279 g"},
-    {name: "Flour", quantity: "400 g"},
-    {name: "Cinnamon", quantity: "10 g"}
+    {name: "Butter", quantity: 400},
+    {name: "Sugar", quantity: 270},
+    {name: "Chopped almonds", quantity: 279},
+    {name: "Flour", quantity: 400},
+    {name: "Cinnamon", quantity: 10}
   ]}, {name: "Berliner", ingredients: [
-    {name: "Flour", quantity: "350 g"},
-    {name: "Butter", quantity: "250 g"},
-    {name: "Icing sugar", quantity: "100 g"},
-    {name: "Eggs", quantity: "50 g"},
-    {name: "Vanilla sugar", quantity: "5 g"},
-    {name: "Chocolate", quantity: "50 g"}
+    {name: "Flour", quantity: 350},
+    {name: "Butter", quantity: 250},
+    {name: "Icing sugar", quantity: 100},
+    {name: "Eggs", quantity: 50},
+    {name: "Vanilla sugar", quantity: 5},
+    {name: "Chocolate", quantity: 50}
   ]}
 ]
 
