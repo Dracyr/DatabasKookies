@@ -1,4 +1,5 @@
-<%= form_for(@product) do |f| %>
+<%= javascript_include_tag :defaults, "nested_form" %>
+<%= nested_form_for(@product) do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -15,6 +16,22 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
+  Ingredients:
+  <ul>
+    <%= f.fields_for :product_ingredients do |product_ingredients_form| %>
+      <li>
+        <%= product_ingredients_form.label :ingredient %>
+        <%= product_ingredients_form.collection_select :ingredient_id, Ingredient.all.order(:name), :id, :name %>
+        <%= product_ingredients_form.text_field :quantity %>
+        <%= product_ingredients_form.hidden_field :id %>
+        <%= product_ingredients_form.link_to_remove "Remove this ingredient" %>
+      </li>
+    <% end %>
+    <p>
+      <%= f.link_to_add "Add an ingredient", :product_ingredients %>
+    </p>
+  </ul>
   <div class="actions">
     <%= f.submit %>
   </div>
