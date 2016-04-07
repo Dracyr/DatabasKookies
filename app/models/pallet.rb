@@ -23,6 +23,14 @@ class Pallet < ActiveRecord::Base
   end
 
   def blocked?
-    ProductionBlock.in_range(created_at).where(product: product).any?
+    !delivered? && ProductionBlock.in_range(created_at).where(product: product).any?
+  end
+
+  def delivered?
+    false
+  end
+
+  def produce
+    product.produce && save
   end
 end

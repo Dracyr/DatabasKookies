@@ -7,9 +7,13 @@ class Ingredient < ActiveRecord::Base
 
   def deliver_ingredient(ingredient_params)
     update({
-      quantity: self.quantity + ingredient_params[:last_delivered_quantity].to_i,
-      last_delivered_quantity: ingredient_params[:last_delivered_quantity],
+      quantity: self.quantity + ingredient_params[:last_delivered_quantity].to_i  * 1000,
+      last_delivered_quantity: ingredient_params[:last_delivered_quantity].to_i * 1000,
       last_delivered: DateTime.current
     })
+  end
+
+  def deplete(quantity)
+    update(quantity: self.quantity - quantity)
   end
 end

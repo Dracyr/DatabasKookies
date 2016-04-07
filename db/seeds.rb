@@ -28,7 +28,7 @@ ingredients = [
 ]
 
 ingredients.each do |ingredient|
-  Ingredient.create(name: ingredient)
+  Ingredient.create(name: ingredient, quantity: 10000)
 end
 
 

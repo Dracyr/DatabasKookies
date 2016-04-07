@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :production_blocks
 
-  resources :pallets
+  resources :pallets, only: [:index, :new, :create]
 
   resources :orders
 

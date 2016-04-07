@@ -15,12 +15,12 @@
     <% @ingredients.each do |ingredient| %>
       <tr>
         <td><%= ingredient.name %></td>
-        <td><%= ingredient.quantity %></td>
+        <td><%= ingredient.quantity / 1000.0 %>kg</td>
         <td><%= ingredient.last_delivered %></td>
-        <td><%= ingredient.last_delivered_quantity %></td>
+        <td><%= ingredient.last_delivered_quantity.to_i / 1000.0 %>kg</td>
         <td>
           <%= bootstrap_form_for(ingredient, layout: :inline) do |f| %>
-            <%= f.text_field :last_delivered_quantity, hide_label: true %>
+            <%= f.text_field :last_delivered_quantity, hide_label: true, placeholder: 'Quantity (kg)' %>
             <%= f.submit "Leverera" %>
           <% end %>
         </td>

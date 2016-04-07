@@ -1,4 +1,4 @@
-<h1>Listing Pallets</h1>
+<h1>Listing Pallets <small><%= @pallets.count %>st</small></h1>
 
 <%= bootstrap_form_tag(url: pallets_path, method: :get, layout: :inline) do |f| %>
   <%= f.label :search %><br>
@@ -19,7 +19,6 @@
       <th>Produced</th>
       <th>Order</th>
       <th>Blocked</th>
-      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -32,9 +31,6 @@
         <td><%= pallet.created_at %></td>
         <td><%= pallet.order %></td>
         <td><%= pallet.blocked? %></td>
-        <!-- <td><%#= link_to 'Show', pallet %></td> -->
-        <td><%= link_to 'Edit', edit_pallet_path(pallet) %></td>
-        <td><%= link_to 'Destroy', pallet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Pallet', new_pallet_path %>
+<%= link_to 'Produce Pallet', new_pallet_path, class: 'btn btn-success' %>
