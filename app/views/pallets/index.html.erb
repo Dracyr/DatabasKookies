@@ -2,8 +2,8 @@
 
 <%= bootstrap_form_tag(url: pallets_path, method: :get, layout: :inline) do |f| %>
   <%= f.label :search %><br>
-  <%= f.collection_select :product_id, Product.all, :id, :name, {selected: @search[:product_id], hide_label: true}, {class: 'select2', multiple: true} %>
-  <%= f.text_field :created_at, hide_label: true, value: @search[:created_at],id: 'daterange' %>
+  <%= f.collection_select :product_id, Product.all, :id, :name, {selected: @search[:product_id], hide_label: true}, {class: 'select2', multiple: true, placeholder: 'Product'} %>
+  <%= f.text_field :created_at, hide_label: true, value: @search[:created_at],id: 'daterange', placeholder: 'Date range' %>
   <%= f.check_box :blocked, checked: @search[:blocked] == '1' %>
 
   <%= f.submit "Search", class: 'btn btn-primary' %>
