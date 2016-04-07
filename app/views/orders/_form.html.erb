@@ -1,25 +1,21 @@
-<%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+<%= javascript_include_tag "nested_form" %>
 
-      <ul>
-      <% @order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= bootstrap_nested_form_for(@order) do |f| %>
+  <%= f.form_group do %>
+    <%= f.collection_select :customer_id, Customer.all, :id, :name, {}, class: 'select2' %>
+    <%= f.datetime_select :delivered_at %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :customer_id %><br>
-    <%= f.text_field :customer_id %>
-  </div>
-  <div class="field">
-    <%= f.label :delivered_at %><br>
-    <%= f.datetime_select :delivered_at %>
-  </div>
-  <div class="actions">
+
+  <%= f.form_group do %>
+    <%= f.label :pallets %> <br/>
+    <%= f.fields_for :order_products %>
+
+    <%= f.link_to_add "Add product", :order_products, class: "btn btn-primary" %>
+  <% end %>
+
+
+  <%= f.form_group do %>
     <%= f.submit %>
-  </div>
+  <% end %>
 <% end %>

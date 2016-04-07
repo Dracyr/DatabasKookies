@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331055618) do
+ActiveRecord::Schema.define(version: 20160407112526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20160331055618) do
     t.datetime "updated_at",                            null: false
   end
 
+  create_table "order_products", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "product_id"
+    t.integer "quantity",   null: false
+  end
+
+  add_index "order_products", ["order_id"], name: "index_order_products_on_order_id", using: :btree
+  add_index "order_products", ["product_id"], name: "index_order_products_on_product_id", using: :btree
+
   create_table "orders", force: :cascade do |t|
     t.integer  "customer_id"
     t.datetime "delivered_at"
@@ -44,12 +53,11 @@ ActiveRecord::Schema.define(version: 20160331055618) do
   create_table "pallets", force: :cascade do |t|
     t.string   "status"
     t.integer  "product_id"
-    t.integer  "order_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "order_products_id"
   end
 
-  add_index "pallets", ["order_id"], name: "index_pallets_on_order_id", using: :btree
   add_index "pallets", ["product_id"], name: "index_pallets_on_product_id", using: :btree
 
   create_table "product_ingredients", force: :cascade do |t|
@@ -77,8 +85,9 @@ ActiveRecord::Schema.define(version: 20160331055618) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "order_products", "orders"
+  add_foreign_key "order_products", "products"
   add_foreign_key "orders", "customers"
-  add_foreign_key "pallets", "orders"
   add_foreign_key "pallets", "products"
   add_foreign_key "product_ingredients", "ingredients"
   add_foreign_key "product_ingredients", "products"

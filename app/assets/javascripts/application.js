@@ -14,5 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require_tree .
 //= require jquery_nested_form
+//= require select2
+//= require_tree .
+
+$(document).on("ready page:update nested:fieldAdded", function() {
+  $(".select2").select2({
+    theme: "bootstrap",
+  });
+})

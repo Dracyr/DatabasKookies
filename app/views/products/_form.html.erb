@@ -1,37 +1,22 @@
-<%= javascript_include_tag :defaults, "nested_form" %>
-<%= bootstrap_nested_form_for(@product, layout: :inline) do |f| %>
-  <% if @product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<%= javascript_include_tag "nested_form" %>
 
-      <ul>
-      <% @product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= bootstrap_nested_form_for @product do |f| %>
   <%= f.form_group do %>
-    <%= f.text_field :name %>
-  <% end %>
+    <%= f.text_field :name, inline: false %>
 
-  <h4>Ingredients:</h4>
-    <%= f.fields_for :product_ingredients do |product_ingredients_form| %>
-      <%= f.form_group do %>
-        <%= product_ingredients_form.collection_select :ingredient_id, Ingredient.all.order(:name), :id, :name, hide_label: true %>
-        <%= product_ingredients_form.text_field :quantity, hide_label: true %>
-        <%= product_ingredients_form.hidden_field :id %>
-        <%= product_ingredients_form.link_to_remove "X", class: "btn btn-danger" %>
-      <% end %>
+    <%= f.label :ingredients %> <br/>
+    <%= f.fields_for :product_ingredients do |pf| %>
+      <div class="form-group form-inline">
+        <%= pf.collection_select :ingredient_id, Ingredient.all.order(:name), :id, :name, {hide_label: true}, {class: 'select2'} %>
+        <%= pf.text_field :quantity, hide_label: true, placeholder: "Quantity" %>
+        <%= pf.hidden_field :id %>
+        <%= pf.link_to_remove "X", class: "btn btn-danger" %>
+      </div>
     <% end %>
-
-  <%= f.form_group  do %>
-    <%= f.link_to_add "Add an ingredient", :product_ingredients,
-    class: "btn btn-success", layout: :default %>
+    <%= f.link_to_add "Add ingredient", :product_ingredients, class: "btn btn-success" %>
   <% end %>
 
   <%= f.form_group do %>
-    <%= f.primary %>
+    <%= f.submit %>
   <% end %>
 <% end %>

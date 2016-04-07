@@ -1,0 +1,6 @@
+<div class="form-group form-inline">
+  <%= f.collection_select :product_id, Product.all.order(:name), :id, :name, {hide_label: true}, {class: 'select2'} %>
+  <%= f.text_field :quantity, hide_label: true, placeholder: "Quantity" %>
+  <%= f.hidden_field :id %>
+  <%= f.link_to_remove "X", class: "btn btn-danger" %>
+</div>
