@@ -4,3 +4,8 @@
 
 @import "bootstrap-generators";
 @import "bootstrap-variables";
+@import "daterangepicker-bs3";
+
+.select2-container {
+  min-width: 250px;
+}

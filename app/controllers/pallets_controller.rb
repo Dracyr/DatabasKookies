@@ -1,10 +1,12 @@
 class PalletsController < ApplicationController
   before_action :set_pallet, only: [:show, :edit, :update, :destroy]
+  before_action :set_search_params, only: :index
+  before_action :transform_params, only: :index
 
   # GET /pallets
   # GET /pallets.json
   def index
-    @pallets = Pallet.all
+    @pallets = Pallet.filter(params.slice(:blocked, :product_id, :created_at))
   end
 
   # GET /pallets/1
@@ -62,13 +64,23 @@ class PalletsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pallet
-      @pallet = Pallet.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pallet
+    @pallet = Pallet.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def pallet_params
-      params.require(:pallet).permit(:status, :product_id, :order_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def pallet_params
+    params.require(:pallet).permit(:status, :product_id, :order_id)
+  end
+
+  def set_search_params
+    @search = params.slice(:blocked, :product_id, :created_at)
+  end
+
+  def transform_params
+    params[:created_at] = params[:created_at].split('<>').map(&:to_date) if params[:created_at]
+    params[:blocked] = params[:blocked] == "1" ? true : nil if params[:blocked]
+    params[:product_id] = nil if params[:product_id] && params[:product_id].all?(&:blank?)
+  end
 end

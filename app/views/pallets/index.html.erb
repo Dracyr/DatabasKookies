@@ -1,10 +1,22 @@
 <h1>Listing Pallets</h1>
 
+<%= bootstrap_form_tag(url: pallets_path, method: :get, layout: :inline) do |f| %>
+  <%= f.label :search %><br>
+  <%= f.collection_select :product_id, Product.all, :id, :name, {selected: @search[:product_id], hide_label: true}, {class: 'select2', multiple: true} %>
+  <%= f.text_field :created_at, hide_label: true, value: @search[:created_at],id: 'daterange' %>
+  <%= f.check_box :blocked, checked: @search[:blocked] == '1' %>
+
+  <%= f.submit "Search", class: 'btn btn-primary' %>
+  <%= link_to "Clear", pallets_path, class: 'btn btn-default' %>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>
+      <th>Pallet number</th>
       <th>Status</th>
       <th>Product</th>
+      <th>Produced</th>
       <th>Order</th>
       <th>Blocked</th>
       <th colspan="2"></th>
@@ -14,8 +26,10 @@
   <tbody>
     <% @pallets.each do |pallet| %>
       <tr class="<%= pallet.blocked? ? 'danger' : '' %>">
+        <td><%= pallet.id %></td>
         <td><%= pallet.status %></td>
         <td><%= pallet.product %></td>
+        <td><%= pallet.created_at %></td>
         <td><%= pallet.order %></td>
         <td><%= pallet.blocked? %></td>
         <!-- <td><%#= link_to 'Show', pallet %></td> -->
