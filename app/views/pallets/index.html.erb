@@ -14,11 +14,11 @@
   <thead>
     <tr>
       <th>Pallet number</th>
-      <th></th>
       <th>Status</th>
       <th>Product</th>
       <th>Produced</th>
       <th>Order</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -26,11 +26,11 @@
     <% @pallets.each do |pallet| %>
       <tr class="<%= pallet.blocked? ? 'danger' : '' %>">
         <td><%= pallet.id %></td>
-        <td><%= 'Blocked' if pallet.blocked? %></td>
         <td><%= pallet.status %></td>
         <td><%= pallet.product %></td>
         <td><%= pallet.created_at %></td>
         <td><%= pallet.order %></td>
+        <td align="right"><%= 'Blocked' if pallet.blocked? %></td>
       </tr>
     <% end %>
   </tbody>
