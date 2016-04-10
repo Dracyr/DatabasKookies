@@ -26,7 +26,10 @@
     <% @pallets.each do |pallet| %>
       <tr class="<%= pallet.blocked? ? 'danger' : '' %>">
         <td><%= pallet.id %></td>
-        <td><%= pallet.status %></td>
+        <td>
+          <%#= pallet.status %>
+          In storage
+        </td>
         <td><%= pallet.product %></td>
         <td><%= pallet.created_at %></td>
         <td><%= pallet.order %></td>

@@ -13,7 +13,6 @@ class Pallet < ActiveRecord::Base
   scope :created_at, -> (date_range) {
     where(created_at: date_range.first.beginning_of_day..date_range.last.end_of_day)
   }
-  #scope :not_delivered, -> {}
 
   def self.blocked(blocked)
     if blocked

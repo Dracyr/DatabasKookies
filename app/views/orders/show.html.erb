@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <strong>Delivered at:</strong>
+  <strong>Delivered by:</strong>
   <%= @order.delivered_at %>
 </p>
 
@@ -15,7 +15,7 @@
   <ul>
     <% @order.order_products.each do |op| %>
       <li>
-        <b><%= op.name %></b>: <%= op.quantity %>
+        <b><%= op.name %></b>: <%= op.quantity %> pallets
       </li>
     <% end %>
   </ul>
